@@ -52,7 +52,7 @@ def run(
     hotspot_point_table_path = join(target_folder, 'hotspot_point.csv')
     hotspot_point_table.to_csv(hotspot_point_table_path, index=False)
     return [
-        ('hotspot_point_table_path', hotspot_point_table_path),
+        ('hotspot_point_geotable_path', hotspot_point_table_path),
     ]
 
 

@@ -49,7 +49,7 @@ def run(
     hotspot_point_table = _get_hotspot_point_table(
         hotspot_points, interest_point_table,
         interest_point_table_x_column, interest_point_table_y_column)
-    hotspot_point_table_path = join(target_folder, 'hotspot_points.csv')
+    hotspot_point_table_path = join(target_folder, 'hotspot_point.csv')
     hotspot_point_table.to_csv(hotspot_point_table_path, index=False)
     return [
         ('hotspot_point_table_path', hotspot_point_table_path),

@@ -1,6 +1,6 @@
 # Facility Location
 
-Here are scripts to optimize the location of facilities.
+Here are scripts to optimize the placement of facilities.
 
 - Place hotspots
 

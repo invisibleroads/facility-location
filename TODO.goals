@@ -1,1 +1,2 @@
 Consider clustering points if we have above a certain number
+Check if querying the tree with multiple hotspots at once will increase speed

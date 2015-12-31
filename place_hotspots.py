@@ -116,7 +116,7 @@ if __name__ == '__main__':
     d = run(
         args.target_folder or make_enumerated_folder_for(__file__),
 
-        TableType().load(
+        TableType.load(
             args.interest_point_table_path),
         args.interest_point_table_x_column,
         args.interest_point_table_y_column,

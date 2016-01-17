@@ -3,7 +3,7 @@ from crosscompute_table import TableType
 from invisibleroads_macros.disk import make_enumerated_folder_for, make_folder
 from invisibleroads_macros.log import format_summary
 from os.path import join
-from pandas import DataFrame
+from pandas import DataFrame, concat
 from pysal.cg.kdtree import Arc_KDTree
 from pysal.cg.sphere import arcdist, RADIUS_EARTH_KM
 from scipy.spatial import KDTree
@@ -51,6 +51,11 @@ def run(
         interest_point_table_x_column, interest_point_table_y_column)
     # TODO: Add weight using loss function
     # TODO: Match case for weight column name
+    interest_point_table['FillColor'] = 'k'
+    interest_point_table['RadiusInPixels'] = 10
+    hotspot_point_table['FillColor'] = 'y'
+    hotspot_point_table['RadiusInPixels'] = 20
+    hotspot_point_table = concat([hotspot_point_table, interest_point_table])
     hotspot_point_table_path = join(target_folder, 'hotspot_point.csv')
     hotspot_point_table.to_csv(hotspot_point_table_path, index=False)
     return [

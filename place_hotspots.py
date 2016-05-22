@@ -1,9 +1,8 @@
 from argparse import ArgumentParser
-from crosscompute_table import TableType
 from invisibleroads_macros.disk import make_enumerated_folder_for, make_folder
 from invisibleroads_macros.log import format_summary
 from os.path import join
-from pandas import DataFrame, concat
+from pandas import DataFrame, concat, read_csv
 from pysal.cg.kdtree import Arc_KDTree
 from pysal.cg.sphere import arcdist, RADIUS_EARTH_KM
 from scipy.spatial import KDTree
@@ -34,8 +33,10 @@ def run(
             interest_point_table_y_column):
         interest_point_tree = Arc_KDTree(
             interest_points, radius=EARTH_RADIUS_IN_METERS)
-        compute_distance = lambda a, b: arcdist(
-            a, b, radius=EARTH_RADIUS_IN_METERS)
+
+        def compute_distance(a, b):
+            return arcdist(a, b, radius=EARTH_RADIUS_IN_METERS)
+
     else:
         interest_point_tree = KDTree(interest_points)
         compute_distance = euclidean
@@ -121,8 +122,7 @@ if __name__ == '__main__':
     d = run(
         args.target_folder or make_enumerated_folder_for(__file__),
 
-        TableType.load(
-            args.interest_point_table_path),
+        read_csv(args.interest_point_table_path),
         args.interest_point_table_x_column,
         args.interest_point_table_y_column,
 
